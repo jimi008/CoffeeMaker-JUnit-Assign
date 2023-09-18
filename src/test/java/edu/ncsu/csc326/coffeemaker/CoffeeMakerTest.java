@@ -19,6 +19,8 @@
 package edu.ncsu.csc326.coffeemaker;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -43,6 +45,7 @@ public class CoffeeMakerTest {
 	private Recipe recipe2;
 	private Recipe recipe3;
 	private Recipe recipe4;
+	private Recipe recipe5;
 
 	/**
 	 * Initializes some recipes to test with and the {@link CoffeeMaker} 
@@ -90,6 +93,16 @@ public class CoffeeMakerTest {
 		recipe4.setAmtMilk("1");
 		recipe4.setAmtSugar("1");
 		recipe4.setPrice("65");
+
+		//Set up for r5
+		recipe5 = new Recipe();
+		recipe5.setName("Hot Chocolate");
+		recipe5.setAmtChocolate("4");
+		recipe5.setAmtCoffee("0");
+		recipe5.setAmtMilk("1");
+		recipe5.setAmtSugar("1");
+		recipe5.setPrice("65");		
+
 	}
 	
 	
@@ -130,6 +143,21 @@ public class CoffeeMakerTest {
 	public void testMakeCoffee() {
 		coffeeMaker.addRecipe(recipe1);
 		assertEquals(25, coffeeMaker.makeCoffee(0, 75));
+		assertTrue(coffeeMaker.addRecipe(recipe1)); 
+		assertFalse(coffeeMaker.addRecipe(recipe1));
 	}
+
+	/**
+	 * Given a coffee maker with one valid recipe
+	 * When we make coffee, selecting the valid recipe and paying more than 
+	 * 		the coffee costs
+	 * Then we get the correct change back.
+	 */
+	// @Test
+	// public void testaddRecipe() {
+	// 	coffeeMaker.addRecipe(recipe1);
+	// 	assertEquals(25, coffeeMaker.makeCoffee(0, 75));
+	// }
+	
 
 }
